@@ -1,16 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { searchBooks } from "../../actions/bookActions";
 
 const SearchBar = () => {
-    const [searchString, setSearchString] = useState("");
+    const [state, setState] = useState({
+        books: [],
+        searchString: "",
+        laoding: false,
+        success: "",
+        error: "",
+    })
+
+    const performSearch = async () => {
+        await searchBooks(state.searchString, setState);
+    }
+
+    const handleChange = (e:any) => {
+        setState({
+            ...state,
+            searchString: e.target.value
+        })
+    }
+
+    useEffect(() => {
+        performSearch()
+    }, [state.searchString])
+
+    useEffect(()=> {
+        console.log('Search Results State:', state);
+    }, [state])
+
     return (
         <div className="search-bar-container">
             <div className="search-bar">
                 <input
                     className="search-input"
-                    type="search" 
+                    type="search"
+                    name="searchString"
                     placeholder="Keyword | Title | Author | ISBN | Publisher" 
-                    value={searchString}
-                    onChange={(e:any) => setSearchString(e.target.value)}
+                    value={state.searchString}
+                    onChange={handleChange}
                 />
                 <span className="icon search-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none">

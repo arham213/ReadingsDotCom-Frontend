@@ -1,0 +1,132 @@
+.checkout-modal {
+    position: fixed;
+    width: 95%;
+    top: 5%;
+    right: 2.5%;
+    bottom: 5%;
+    left: 2.5%;
+    overflow-y: auto;
+    z-index: 12;
+}
+
+.checkout-container {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 245 247 / var(--tw-bg-opacity));
+    padding: 3rem 5rem;
+    border-radius: 10px;
+}
+
+.checkout-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.heading {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.email {
+    width: 100%;
+    padding: 15px !important;
+}
+
+.place-order-button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-primary);
+    color: #fff;
+    border-radius: 10px;
+    border-color: var(--color-primary);
+}
+
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    gap: 16px;
+    padding: 28px;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.order-items {
+    max-height:10rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(243 245 247 / var(--tw-bg-opacity)) !important;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.img-container {
+    position: relative;
+}
+
+.item-img {
+    max-height: 5rem;
+}
+
+.quantity-pill {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0px 7px;
+}
+
+.order-item .details {
+    max-width: 7rem;
+}
+
+.addresses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.address-section {
+    background-color: #fff;
+    padding: 1rem;
+    width: calc(33% - 15px);
+    border-radius: 10px;
+}
+
+.address-section .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.address-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.address-form input, .address-form select, .address-form button {
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}

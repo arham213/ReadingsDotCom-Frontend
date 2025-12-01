@@ -1,0 +1,17 @@
+.order-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.category-header, .order-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-buttons a {
+    display: flex;
+    align-items: center;
+    grid-area: 5px;
+}

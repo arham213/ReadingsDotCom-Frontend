@@ -48,21 +48,32 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
   text-decoration: none;
+  color: #000;
+  cursor: pointer
 }
 
 /* Buttons */
 button {
   padding: 5px 10px;
+  width: fit-content;
+  cursor: pointer;
 }
 
 /* Inputs */
 input, select, textarea {
   outline: none;
   transition: border-color var(--transition-speed);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 
 input:focus, textarea:focus, select:focus {
   border-color: var(--color-accent);
+}
+
+input[type="checkbox"] {
+  border-radius: 20px;
 }
 
 /* Utility classes */
@@ -70,7 +81,7 @@ input:focus, textarea:focus, select:focus {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 50px 20px;
 }
 
 .text-center {
@@ -86,4 +97,13 @@ input:focus, textarea:focus, select:focus {
 
 .hidden {
   display: none !important;
+}
+
+.page-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+main.container {
+  margin-top: 120px;
 }

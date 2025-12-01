@@ -1,6 +1,4 @@
-  // src/components/Navbar/navbarData.ts
-
-  export interface TopRowItem {
+export interface TopRowItem {
     name: string;
     code: number;
   }
@@ -21,6 +19,16 @@
     topRow?: TopRowItem[];
     groups?: CategoryGroup[];
   }
+
+  export const TOP_CATEGORIES: TopRowItem[] = [
+        { name: "New Releases", code: 301 },
+        { name: "New at Readings", code: 302 },
+        { name: "New in Our Publications", code: 303 },
+        { name: "Coming Soon (Pre-Order)", code: 304 },
+        { name: "International Bestsellers", code: 305 },
+        { name: "Bestsellers in Our Publications", code: 306 },
+  ]
+    
 
   export const NAVBAR_ITEMS: MainCategory[] = [
     {
