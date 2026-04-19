@@ -1,24 +1,27 @@
 # ReadingsDotCom-Frontend
 
-![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white&style=flat-square)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white&style=flat-square)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white&style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9-3178C6?logo=typescript&logoColor=white&style=flat-square)
+![Create React App](https://img.shields.io/badge/Create_React_App-5-09D3AC?logo=react&logoColor=white&style=flat-square)
 ![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?logo=vercel&logoColor=white&style=flat-square)
 
 Frontend for a full-stack MERN e-commerce platform specializing in books. Handles authentication flows, product browsing, cart and wishlist state management, and end-to-end order placement via a REST API backend.
 
-**Live:** [Coming Soon](#) &nbsp;|&nbsp; **Backend:** [ReadingsDotCom-Backend](https://github.com/arham213/ReadingsDotCom-Backend)
+**Live:** [coming-soon.vercel.app](#) &nbsp;|&nbsp; **Backend:** [ReadingsDotCom-Backend](https://github.com/arham213/ReadingsDotCom-Backend)
 
 ---
 
-<!-- ![App Preview](./docs/screenshot.png) -->
+<!-- Add a screenshot or GIF of the app here -->
+<!-- ![Dashboard Preview](./docs/screenshot.png) -->
 
 ## Features
 
-- JWT-based authentication — signup, login, and email verification
+- JWT-based authentication (signup, login, and email verification)
 - Category browsing and advanced book search
 - Product detail pages
 - Wishlist and cart management with persistent state
 - End-to-end checkout and order placement
+- Protected routes with session-based auth guard
 - Fully integrated with a REST API backend
 
 ---
@@ -27,23 +30,19 @@ Frontend for a full-stack MERN e-commerce platform specializing in books. Handle
 
 | Layer | Technology |
 |---|---|
-| Framework | React, TypeScript |
-| Build Tool | Create React App |
-| Routing | React Router DOM |
+| Framework | React 19, TypeScript |
 | Networking | Axios |
-| UI Utilities | Swiper (sliders) |
-| Auth | JWT (via backend) |
-| Deployment | Vercel |
+| Build | Create React App |
+| Frontend Deployment | Vercel |
+| Backend Deployment | Railway |
 
 ---
 
 ## Local Setup
 
-### 1. Prerequisites
+### Prerequisites
 - Node.js 18+
-- [ReadingsDotCom-Backend](https://github.com/arham213/ReadingsDotCom-Backend) running locally or remotely *(the backend must be running before you try to use frontend features).*
-
-### 2. Clone and Install
+- [ReadingsDotCom-Backend](https://github.com/arham213/ReadingsDotCom-Backend) running locally or remotely *(required — must be running before starting the frontend)*
 
 ```bash
 git clone https://github.com/arham213/ReadingsDotCom-Frontend.git
@@ -51,30 +50,16 @@ cd ReadingsDotCom-Frontend
 npm install
 ```
 
-### 3. Environment Configuration
+### Environment Variables
 
-Create a `.env` file in the project root to map your backend path:
+Create a `.env` file in the root directory and fill in your values:
 
 ```env
-BASE_URL=http://localhost:8080/api
+BASE_URL=your_backend_url
 ```
-
-*(Note: Ensure `8080` matches the port your local backend server is running on).*
-
-### 4. Run Development Server
 
 ```bash
 npm start
-```
-
-The application will begin running locally. By default, it will open at [http://localhost:3000](http://localhost:3000).
-
-### 5. Build for Production
-
-To create an optimized production build for deployment:
-
-```bash
-npm run build
 ```
 
 See the [backend README](https://github.com/arham213/ReadingsDotCom-Backend#readme) for full backend setup instructions.
