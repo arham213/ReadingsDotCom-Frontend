@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { getBooksByCategory } from "../actions/bookActions";
 import { Book } from "../types/Book";
 import Card from "../components/products/card";
+import { ProductCardSkeleton } from "../components/common/Skeleton";
 import "../assets/styles/category.css";
 
 interface CategoryPageState {
@@ -33,11 +34,18 @@ const Category = () => {
 
     return (
         <div>
-            {state.loading && <p>Loading...</p>}
             {/* <h2 className="page-heading">{}</h2> */}
-            <div className="products-listing-container">
-                {state.books?.map((book: Book) => <Card product={book} />)}
-            </div>
+            {state.loading ? (
+                <div className="products-listing-container">
+                    {[...Array(8)].map((_, i) => (
+                        <ProductCardSkeleton key={i} />
+                    ))}
+                </div>
+            ) : (
+                <div className="products-listing-container">
+                    {state.books?.map((book: Book, index: number) => <Card key={index} product={book} />)}
+                </div>
+            )}
         </div>
     )
 }
