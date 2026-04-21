@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import RightArrow from "../../assets/images/right-arrow.png";
 import "../../assets/styles/products.css"
+import { ProductCardSkeleton } from "./Skeleton";
 
 interface CategoryState {
     books: Book[],
@@ -51,15 +52,27 @@ const Products = ({ heading, categoryName, authorId }: ProductsProps) => {
                 <img src={RightArrow} alt="Arrow" />
                 <a href={viewAllUrl} className="view-all-text">View All</a>
             </span>
+            {state.loading && state.books.length === 0 && (
+                <div className="skeleton-products-row">
+                    {[1, 2, 3, 4].map((i) => (
+                        <ProductCardSkeleton key={i} />
+                    ))}
+                </div>
+            )}
             {state.books.length > 0 && (<div className="products-list">
                 <div ref={prevRef} className="slider-arrow slider-arrow-prev">‹</div>
                 <div ref={nextRef} className="slider-arrow slider-arrow-next">›</div>
 
                 <Swiper
                     modules={[Navigation]}
-                    spaceBetween={20}
-                    slidesPerView={4}
+                    spaceBetween={12}
+                    slidesPerView={2}
                     loop={true}
+                    breakpoints={{
+                        480: { slidesPerView: 2, spaceBetween: 14 },
+                        768: { slidesPerView: 3, spaceBetween: 16 },
+                        1024: { slidesPerView: 4, spaceBetween: 20 },
+                    }}
                     onInit={(swiper: any) => {
                         swiper.params.navigation.prevEl = prevRef.current;
                         swiper.params.navigation.nextEl = nextRef.current;

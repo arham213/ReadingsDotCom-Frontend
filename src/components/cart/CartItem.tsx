@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { addToWishlist } from "../../actions/userActions";
 import { useWishlist } from "../../context/WishlistContext";
 import { useCart } from "../../context/CartContext";
+import toast from "../../utils/toast";
 
 const CartItem = ({ cartItem, getCart, cartState, setCartState }: { cartItem: CartItemState, getCart: any, cartState: any, setCartState: any }) => {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ const CartItem = ({ cartItem, getCart, cartState, setCartState }: { cartItem: Ca
         const user = JSON.parse(localStorage.getItem("user") || "null");
 
         if (!user) {
-            window.alert('Session Expired!\nPlease Login to proceed');
+            toast.show('Session Expired!\nPlease Login to proceed');
             navigate("/login");
         }
 
@@ -39,7 +40,7 @@ const CartItem = ({ cartItem, getCart, cartState, setCartState }: { cartItem: Ca
         const user = JSON.parse(localStorage.getItem("user") || "null");
 
         if (!user) {
-            window.alert('Session Expired!\nPlease Login to proceed');
+            toast.show('Session Expired!\nPlease Login to proceed');
             navigate("/login");
         }
 

@@ -1,6 +1,7 @@
 import { isAxiosError } from "axios";
 import { doAdvancedSearch, doSearch, getAuthorBooks, getCategoryBooks, getSingleBook } from "../services/productService";
 import { AdvancedSearchFormState } from "../types/Book";
+import toast from "../utils/toast";
 
 export const getBooksByCategory = async (categoryCode: Number, setState: any) => {
     console.log('categoryCode in action:', categoryCode);
@@ -15,9 +16,9 @@ export const getBooksByCategory = async (categoryCode: Number, setState: any) =>
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to fetch Books")
+            toast.show(error?.response?.data?.error?.message || "Failed to fetch Books")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error fetching Books:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -39,9 +40,9 @@ export const getBooksByAuthor = async (authorId: string, setState: any) => {
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to fetch books")
+            toast.show(error?.response?.data?.error?.message || "Failed to fetch books")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error fetching Books:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -63,9 +64,9 @@ export const getBook = async (bookId: string, setState: any) => {
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to fetch books")
+            toast.show(error?.response?.data?.error?.message || "Failed to fetch books")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error fetching Book:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -87,9 +88,9 @@ export const advancedSearchBooks = async (queryParams: string, setState: any) =>
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to search books")
+            toast.show(error?.response?.data?.error?.message || "Failed to search books")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error searching Books:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -110,9 +111,9 @@ export const searchBooks = async (searchString: string, setState: any) => {
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to search books")
+            toast.show(error?.response?.data?.error?.message || "Failed to search books")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error searching Books:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));

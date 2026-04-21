@@ -1,6 +1,7 @@
 import { isAxiosError } from "axios";
 import { addProductToCart, clearCartItems, deleteItemFromCart, getUserCart, updateItemInCart } from "../services/cartServices";
 import { AddToCartRequestBody, CartItemState, DeleteCartItemRequestBody, UpdateCartRequestBody } from "../types/Cart";
+import toast from "../utils/toast";
 
 export const getCart = async (setState: any) => {
     try {
@@ -8,15 +9,15 @@ export const getCart = async (setState: any) => {
         const response = await getUserCart();
         if (response?.success) {
             setState((prev: any) => ({ ...prev, success: "Cart fetched successfully", cart: response.data.cart }));
-            // window.alert('Book Added To Cart');
+            // toast.show('Book Added To Cart');
         } else {
             throw new Error(response?.error?.message);
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to fetch Cart")
+            toast.show(error?.response?.data?.error?.message || "Failed to fetch Cart")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error fetching cart:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -38,15 +39,15 @@ export const addToCart = async (cartId: string, bookId: string, quantity: Number
         if (response?.success) {
             setState((prev: any) => ({ ...prev, success: "Book Added To Cart", cartItemCount: response.data.cartItemCount }));
             incrementCartItemCountContext();
-            window.alert('Book Added To Cart');
+            toast.show('Book Added To Cart');
         } else {
             throw new Error(response?.error?.message);
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to Add Book to Cart")
+            toast.show(error?.response?.data?.error?.message || "Failed to Add Book to Cart")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error adding book to cart:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -68,15 +69,15 @@ export const addToCartV2 = async (cartId: string, bookId: string, quantity: Numb
         if (response?.success) {
             setState((prev: any) => ({ ...prev, success: "Book Added To Cart"}));
             incrementCartItemCountContext();
-            window.alert('Book Added To Cart');
+            toast.show('Book Added To Cart');
         } else {
             throw new Error(response?.error?.message);
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to Add Book to Cart")
+            toast.show(error?.response?.data?.error?.message || "Failed to Add Book to Cart")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error adding book to cart:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -108,15 +109,15 @@ export const updateCartItem = async (cartId: string, bookId: string, quantity: N
 
             await getCart(setCartState);
 
-            window.alert('Book Updated');
+            toast.show('Book Updated');
         } else {
             throw new Error(response?.error?.message);
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to Update Item")
+            toast.show(error?.response?.data?.error?.message || "Failed to Update Item")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error updating cart item:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -146,15 +147,15 @@ export const deleteCartItem = async (cartId: string, bookId: string, decrementCa
 
             await getCart(setCartState);
 
-            window.alert('Book Deleted from Cart');
+            toast.show('Book Deleted from Cart');
         } else {
             throw new Error(response?.error?.message);
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to Delete Item")
+            toast.show(error?.response?.data?.error?.message || "Failed to Delete Item")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error deleting item from cart:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -183,9 +184,9 @@ export const clearCart = async (cartId: string, setState: any, getCart: any, set
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to clear cart")
+            toast.show(error?.response?.data?.error?.message || "Failed to clear cart")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error clearing cart:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));

@@ -1,0 +1,86 @@
+/* ==============================
+   Skeleton Loading Animations
+   ============================== */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-alt) 25%,
+    var(--color-border-light) 50%,
+    var(--color-bg-alt) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ---- Product Card Skeleton ---- */
+.skeleton-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  overflow: hidden;
+}
+
+.skeleton-card-img {
+  background: var(--color-bg-alt);
+  padding: 0;
+}
+
+.skeleton-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+.skeleton-card-footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 0 16px 14px;
+}
+
+/* ---- Section Skeleton ---- */
+.skeleton-section {
+  animation: fadeIn 0.3s ease;
+}
+
+.skeleton-section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--color-border-light);
+}
+
+.skeleton-products-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* ---- Product Detail Skeleton ---- */
+.skeleton-product-detail {
+  display: flex;
+  gap: 32px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  animation: fadeIn 0.3s ease;
+}
+
+.skeleton-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.skeleton-detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 160px;
+}

@@ -1,46 +1,71 @@
-# Getting Started with Create React App
+# ReadingsDotCom-Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white&style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9-3178C6?logo=typescript&logoColor=white&style=flat-square)
+![Create React App](https://img.shields.io/badge/Create_React_App-5-09D3AC?logo=react&logoColor=white&style=flat-square)
+![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?logo=vercel&logoColor=white&style=flat-square)
 
-## Available Scripts
+Frontend for a full-stack MERN e-commerce platform specializing in books. Handles authentication flows, product browsing, cart and wishlist state management, and end-to-end order placement via a REST API backend.
 
-In the project directory, you can run:
+**Live:** [coming-soon.vercel.app](#) &nbsp;|&nbsp; **Backend:** [coming-soon.up.railway.app](#) ([repo](https://github.com/arham213/ReadingsDotCom-Backend))
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- Add a screenshot or GIF of the app here -->
+<!-- ![Dashboard Preview](./docs/screenshot.png) -->
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `npm test`
+- JWT-based authentication (signup, login, and email verification)
+- Category browsing and advanced book search
+- Product detail pages
+- Wishlist and cart management with persistent state
+- End-to-end checkout and order placement
+- Protected routes with session-based auth guard
+- Fully integrated with a REST API backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Layer | Technology |
+|---|---|
+| Framework | React 19, TypeScript |
+| Networking | Axios |
+| Build | Create React App |
+| Frontend Deployment | Vercel |
+| Backend Deployment | Railway |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Local Setup
 
-### `npm run eject`
+### Prerequisites
+- Node.js 18+
+- [ReadingsDotCom-Backend](https://github.com/arham213/ReadingsDotCom-Backend) running locally or remotely *(required — must be running before starting the frontend)*
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+git clone https://github.com/arham213/ReadingsDotCom-Frontend.git
+cd ReadingsDotCom-Frontend
+npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Environment Variables
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Create a `.env` file in the root directory and fill in your values:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```env
+BASE_URL=your_backend_url
+```
 
-## Learn More
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+See the [backend README](https://github.com/arham213/ReadingsDotCom-Backend#readme) for full backend setup instructions.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## Author
+
+[LinkedIn](https://linkedin.com/in/arhamasjid) · arhamasjid213@gmail.com

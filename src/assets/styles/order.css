@@ -1,17 +1,35 @@
+/* ==============================
+   Orders Page
+   ============================== */
+
 .order-categories {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.category-header, .order-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.category-header,
+.order-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-text);
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-border-light);
 }
 
 .action-buttons a {
-    display: flex;
-    align-items: center;
-    grid-area: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.action-buttons a:hover {
+  color: var(--color-secondary);
 }

@@ -1,6 +1,7 @@
 import { isAxiosError } from "axios";
 import { loginUser, registerUser, resendOTP, verifyUserEmail } from "../services/authService";
 import { StoredUser, User } from "../types/auth";
+import toast from "../utils/toast";
 
 export const handleSignup = async (userData: User, navigate: any, setState: any) => {
     try {
@@ -8,7 +9,7 @@ export const handleSignup = async (userData: User, navigate: any, setState: any)
         const response = await registerUser(userData);
         
         if (response?.success) {
-            window.alert("Signup successful");
+            toast.show("Signup successful");
             setState((prev: any) => ({...prev, success: "Signup successful"}));
             navigate(`/verify-email/${response.data.userId}`);
         } else {
@@ -16,9 +17,9 @@ export const handleSignup = async (userData: User, navigate: any, setState: any)
         }
     } catch(error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to Signup")
+            toast.show(error?.response?.data?.error?.message || "Failed to Signup")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error logging in:', error);
         setState((prev: any) => ({...prev, error: error.message || "Something went wrong"}));
@@ -33,7 +34,7 @@ export const handleVerifyEmail = async (userId: string, OTP: string, navigate: a
         const response = await verifyUserEmail(userId, OTP);
         
         if (response?.success) {
-            window.alert("Email Verified successful");
+            toast.show("Email Verified successful");
             setState((prev: any) => ({...prev, success: "Email Verified successful"}));
             navigate("/login");
         } else {
@@ -41,9 +42,9 @@ export const handleVerifyEmail = async (userId: string, OTP: string, navigate: a
         }
     } catch(error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to Verify Email")
+            toast.show(error?.response?.data?.error?.message || "Failed to Verify Email")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error verifying email:', error);
         setState((prev: any) => ({...prev, error: error.message || "Something went wrong"}));
@@ -58,16 +59,16 @@ export const handleResendOTP = async (userId: string, setState: any) => {
         const response = await resendOTP(userId);
         
         if (response?.success) {
-            window.alert("OTP resent successfully");
+            toast.show("OTP resent successfully");
             setState((prev: any) => ({...prev, success: "OTP resent successfully"}));
         } else {
             throw new Error(response?.error?.message);
         }
     } catch(error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to Resend OTP")
+            toast.show(error?.response?.data?.error?.message || "Failed to Resend OTP")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error reseding OTP:', error);
         setState((prev: any) => ({...prev, error: error.message || "Something went wrong"}));
@@ -82,7 +83,7 @@ export const handleLogin = async (email: string, password: string, login: (user:
         const response = await loginUser(email, password);
         
         if (response?.success) {
-            window.alert("Login successful");
+            toast.show("Login successful");
             setState((prev: any) => ({...prev, success: "Login successful"}));
             // localStorage.setItem('user', JSON.stringify(response.data.user));
             login(response.data?.user);
@@ -92,9 +93,9 @@ export const handleLogin = async (email: string, password: string, login: (user:
         }
     } catch(error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to login")
+            toast.show(error?.response?.data?.error?.message || "Failed to login")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         if (error?.response?.data?.data) {
             navigate(`/verify-email/${error?.response?.data?.data.userId}`)

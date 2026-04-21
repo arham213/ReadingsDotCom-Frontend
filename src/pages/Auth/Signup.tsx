@@ -72,7 +72,7 @@ const Signup = () => {
                 />
                 <InputField
                     label="Password"
-                    type="text"
+                    type="password"
                     value={signupState?.password}
                     onChange={(e: any) => handleInputChange("password", e.target.value)}
                     classNames="input-field"

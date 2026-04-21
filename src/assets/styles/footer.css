@@ -1,50 +1,100 @@
+/* ==============================
+   Footer — Premium Dark
+   ============================== */
+
 .footer {
-    background-color: #000;
+  background: linear-gradient(180deg, #0f1923 0%, #0a1018 100%);
+  margin-top: 60px;
 }
 
 .footer .container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 60px;
-    padding: 32px 0 16px;
-    max-width: 670px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 48px;
+  padding: 56px 24px 40px;
+  max-width: 1340px;
 }
 
+/* ---- Section Headings ---- */
 .footer .footer-heading {
-    color: var(--color-secondary);
-    font-size: 13px;
-    line-height: 13px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.footer .footer-heading::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: var(--color-secondary);
+  border-radius: 1px;
+  margin-top: 8px;
+  opacity: 0.5;
+}
+
+/* ---- Footer Items ---- */
+.footer .items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .footer .items .item {
-    display: flex;
-    gap: 12px;
-    padding: 10px 0;
-    list-style: none;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 7px 0;
+  list-style: none;
+}
+
+.footer .items .item .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
 .footer .items .item .icon svg {
-    width: 15px;
-    height: 15px;
+  width: 14px;
+  height: 14px;
 }
 
 .footer .items .item .icon svg path {
-    stroke: #fff;
-    fill: #fff;
+  stroke: rgba(255, 255, 255, 0.5);
+  fill: rgba(255, 255, 255, 0.5);
 }
 
 .footer .items .item .detail {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .footer .items .item .text {
-    color: #fff;
-    font-size: 13px;
-    line-height: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  transition: color var(--transition-fast);
 }
 
-.footer .items .item a:hover {
-    color: var(--color-primary)
+.footer .items .item a.text:hover {
+  color: var(--color-secondary-light);
+}
+
+/* ---- Copyright Bar ---- */
+.footer::after {
+  content: '© 2026 Readings. All rights reserved.';
+  display: block;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.75rem;
+  padding: 20px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  letter-spacing: 0.05em;
 }

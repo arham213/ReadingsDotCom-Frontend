@@ -12,6 +12,7 @@ import { addToWishlist, removeFromWishlist } from "../../actions/userActions";
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
 import { useAuth } from "../../context/AuthContext";
+import toast from "../../utils/toast";
 
 interface ProductCardProps {
     product: Book;
@@ -42,7 +43,7 @@ const Card = ({ product }: ProductCardProps) => {
         const user = JSON.parse(localStorage.getItem('user') || "null");
 
         if (!user) {
-            window.alert("Please login first to add book to the cart")
+            toast.show("Please login first to add book to the cart")
             return;
         }
 
@@ -60,7 +61,7 @@ const Card = ({ product }: ProductCardProps) => {
         const user = JSON.parse(localStorage.getItem('user') || "null");
 
         if (!user) {
-            window.alert("Please login first to add book to the cart")
+            toast.show("Please login first to add book to the cart")
             return;
         }
 
@@ -85,7 +86,7 @@ const Card = ({ product }: ProductCardProps) => {
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user") || "null");
-        if (user && user.wishlistItems.includes(product._id)) {
+        if (user && user.wishlistItems?.includes(product._id)) {
             setState({
                 ...state,
                 isIncludedInWishlist: true
@@ -118,10 +119,10 @@ const Card = ({ product }: ProductCardProps) => {
                             <div className="our-price">
                                 Our Price:&nbsp;
                                 <span className="our-price-value">{product.ourPrice}</span>
-                                <span className="our-price-after-discount">  Rs.{product.ourPriceAfterDiscount}</span>
+                                <span className="our-price-after-discount">  Rs.{Math.round(product.ourPriceAfterDiscount)}</span>
                             </div>
                             <span className="standard-discount">Discount: {product.discount}%</span>
-                            <span className="you-save">You Save: Rs.{product.youSave}</span>
+                            <span className="you-save">You Save: Rs.{Math.round(product.youSave)}</span>
                         </>
                     ) : (
                         <span className="our-price-value">Our Price: Rs.{product.ourPrice}</span>
