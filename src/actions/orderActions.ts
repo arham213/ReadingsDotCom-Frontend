@@ -1,5 +1,6 @@
 import { isAxiosError } from "axios";
 import { getMyOrders } from "../services/orderService";
+import toast from "../utils/toast";
 
 export const getOrders = async (setState: any) => {
     try {
@@ -20,9 +21,9 @@ export const getOrders = async (setState: any) => {
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to fetch Orders")
+            toast.show(error?.response?.data?.error?.message || "Failed to fetch Orders")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error fetching Orders:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));

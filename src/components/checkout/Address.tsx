@@ -3,6 +3,7 @@ import { AddressForm, UserAddress } from "../../types/User";
 import Button from "../common/Button";
 import { addAddress } from "../../actions/userActions";
 import { stat } from "fs";
+import toast from "../../utils/toast";
 
 const countries = [
     {
@@ -95,7 +96,7 @@ const Address = ({ handleClose, getAddresses }: {handleClose: any, getAddresses:
 
     const handleSubmit = async () => {
         if (!validate()) {
-            window.alert("Please fill in all fields to proceed");
+            toast.show("Please fill in all fields to proceed");
             return;
         }
         await addAddress(state, handleClose, getAddresses, setState);   

@@ -1,132 +1,251 @@
+/* ==============================
+   Checkout Modal
+   ============================== */
+
 .checkout-modal {
-    position: fixed;
-    width: 95%;
-    top: 5%;
-    right: 2.5%;
-    bottom: 5%;
-    left: 2.5%;
-    overflow-y: auto;
-    z-index: 12;
+  position: fixed;
+  width: 95%;
+  top: 3%;
+  right: 2.5%;
+  bottom: 3%;
+  left: 2.5%;
+  overflow-y: auto;
+  z-index: 200;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  animation: fadeIn 0.3s ease;
 }
 
 .checkout-container {
-    --tw-bg-opacity: 1;
-    background-color: rgb(243 245 247 / var(--tw-bg-opacity));
-    padding: 3rem 5rem;
-    border-radius: 10px;
+  background: var(--color-bg);
+  padding: 40px 48px;
+  border-radius: var(--radius-xl);
+  min-height: 100%;
+  position: relative;
+}
+
+.checkout-container .close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  color: var(--color-text-muted);
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 8px;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  z-index: 10;
+}
+
+.checkout-container .close-btn:hover {
+  color: var(--color-error);
+}
+
+.checkout-container .content {
+  display: flex;
+  gap: 48px;
 }
 
 .checkout-details {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .heading {
-    font-weight: bold;
-    font-size: 20px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--color-text);
 }
 
 .email {
-    width: 100%;
-    padding: 15px !important;
+  width: 100%;
+  padding: 14px 18px !important;
+  font-size: 0.9rem;
+  border-radius: var(--radius-md);
 }
 
 .place-order-button {
-    width: 100%;
-    padding: 15px;
-    background-color: var(--color-primary);
-    color: #fff;
-    border-radius: 10px;
-    border-color: var(--color-primary);
+  width: 100%;
+  padding: 14px;
+  background: var(--color-primary) !important;
+  color: #fff !important;
+  border-radius: var(--radius-md);
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: all var(--transition-base);
 }
 
+.place-order-button:hover {
+  background: var(--color-primary-light) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---- Order Summary ---- */
 .order-summary {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    gap: 16px;
-    padding: 28px;
-    border-radius: 10px;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  gap: 16px;
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  height: 100%;
+  width: 350px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
 }
 
 .order-items {
-    max-height:10rem;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  max-height: 12rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .order-item {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    --tw-bg-opacity: 1 !important;
-    background-color: rgb(243 245 247 / var(--tw-bg-opacity)) !important;
-    border-radius: 10px;
-    padding: 15px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: var(--color-bg-alt) !important;
+  border-radius: var(--radius-md);
+  padding: 14px;
+  transition: all var(--transition-fast);
+}
+
+.order-item:hover {
+  box-shadow: var(--shadow-xs);
 }
 
 .img-container {
-    position: relative;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.add-ons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.add-ons .item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pricing-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.pricing-details .item,
+.total-amount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-amount {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px dashed var(--color-border-light);
+}
+
+.special-instructions {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  margin-top: 10px;
 }
 
 .item-img {
-    max-height: 5rem;
+  max-height: 5rem;
+  border-radius: var(--radius-sm);
 }
 
 .quantity-pill {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: #000;
-    color: #fff;
-    border-radius: 50%;
-    padding: 0px 7px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-full);
+  padding: 1px 7px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 2px solid var(--color-surface);
 }
 
 .order-item .details {
-    max-width: 7rem;
+  max-width: 8rem;
+  font-size: 0.82rem;
 }
 
 .addresses {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 .address-section {
-    background-color: #fff;
-    padding: 1rem;
-    width: calc(33% - 15px);
-    border-radius: 10px;
+  background: var(--color-surface);
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.same-billing-address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.address-section:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .address-section .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
 }
 
 .address-form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .address-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.address-form input, .address-form select, .address-form button {
-    width: 100%;
+.address-form input,
+.address-form select,
+.address-form button {
+  width: 100%;
 }
 
 .form-row {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 16px;
 }

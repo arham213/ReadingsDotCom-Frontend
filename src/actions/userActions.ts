@@ -1,6 +1,7 @@
 import { isAxiosError } from "axios";
 import { addItemToWishlist, addUserAddress, getAddressesByUser, getWishlistItems, removeItemFromWishlist } from "../services/userService";
 import { AddressForm } from "../types/User";
+import toast from "../utils/toast";
 
 export const getUserAddresses = async (setState: any) => {
     // console.log('categoryCode in action:', categoryCode);
@@ -22,9 +23,9 @@ export const getUserAddresses = async (setState: any) => {
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to fetch Addresses")
+            toast.show(error?.response?.data?.error?.message || "Failed to fetch Addresses")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error fetching Addresses:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -52,9 +53,9 @@ export const getWishlist = async (setState: any) => {
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to fetch Wishlist")
+            toast.show(error?.response?.data?.error?.message || "Failed to fetch Wishlist")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error fetching wishlist:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -79,15 +80,15 @@ export const addAddress = async (address: AddressForm, handleClose: any, getAddr
             setState((prev: any) => ({ ...prev, success: "Address Added Successfully" }));
             getAddresses();
             handleClose();
-            window.alert("Address added successfully")
+            toast.show("Address added successfully")
         } else {
             throw new Error(response?.error?.message);
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to add address")
+            toast.show(error?.response?.data?.error?.message || "Failed to add address")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error adding address:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -111,15 +112,15 @@ export const addToWishlist = async (bookId: string, addToWishlistContext: (bookI
         if (response?.success) {
             setState((prev: any) => ({ ...prev, success: "Book Added to Wishlist" }));
             addToWishlistContext(bookId);
-            window.alert("Book added to wishlist successfully")
+            toast.show("Book added to wishlist successfully")
         } else {
             throw new Error(response?.error?.message);
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to add book to wishlist")
+            toast.show(error?.response?.data?.error?.message || "Failed to add book to wishlist")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error adding book to wishlist:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));
@@ -143,15 +144,15 @@ export const removeFromWishlist = async (bookId: string, removeFromWishlistConte
             setState((prev: any) => ({ ...prev, success: "Book Removed From Wishlist" }));
             removeFromWishlistContext(bookId);
             if (getWishlist) await getWishlist(setWishlistState);
-            window.alert("Book removed from wishlist successfully")
+            toast.show("Book removed from wishlist successfully")
         } else {
             throw new Error(response?.error?.message);
         }
     } catch (error: any) {
         if (isAxiosError(error)) {
-            window.alert(error?.response?.data?.error?.message || "Failed to remove book from wishlist")
+            toast.show(error?.response?.data?.error?.message || "Failed to remove book from wishlist")
         } else {
-            window.alert("Something went wrong. Please try again later");
+            toast.show("Something went wrong. Please try again later");
         }
         console.error('Error removing book from wishlist:', error);
         setState((prev: any) => ({ ...prev, error: error.message || "Something went wrong" }));

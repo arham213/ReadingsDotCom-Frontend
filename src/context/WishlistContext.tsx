@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import { useAuth } from "./AuthContext";
 import { WishlistContextState } from "../types/User";
+import toast from "../utils/toast";
 
 const WishlistContext = createContext<WishlistContextState | undefined>(undefined);
 
@@ -9,7 +10,7 @@ export const WishlistProvider = ({ children }: { children: any }) => {
 
     const addToWishlistContext = (bookId: string) => {
         if (user?.wishlistItems?.includes(bookId)) {
-            window.alert("Already added to wishlist");
+            toast.show("Already added to wishlist");
         }
 
         const wishlist = user?.wishlistItems || [];

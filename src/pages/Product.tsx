@@ -9,6 +9,7 @@ import ShareIcon from "../assets/images/share-icon.png";
 import HeartIcon from "../assets/images/heart-icon.png";
 import "../assets/styles/product.css";
 import Products from "../components/common/products";
+import { ProductDetailSkeleton } from "../components/common/Skeleton";
 
 interface ProductPageState {
     book: Book | null,
@@ -40,7 +41,7 @@ const Product = () => {
 
     return (
         <>
-            {state.loading && <p>Loading...</p>}
+            {state.loading && !book && <ProductDetailSkeleton />}
             {book && (
                 <>
                     <section className="product-view-section product-page-section">
@@ -65,10 +66,10 @@ const Product = () => {
                                         <div className="our-price">
                                             Our Price: 
                                             <span className="our-price-value">{book.ourPrice}</span>
-                                            <span className="our-price-after-discount">Rs.{book.ourPriceAfterDiscount}</span>
+                                            <span className="our-price-after-discount">Rs.{Math.round(book.ourPriceAfterDiscount)}</span>
                                         </div>
                                         <span className="standard-discount">Standard Discount: {book.discount}%</span>
-                                        <span className="you-save">You Save: Rs.{book.youSave}</span>
+                                        <span className="you-save">You Save: Rs.{Math.round(book.youSave)}</span>
                                     </>
                                 ) : (
                                     <span className="our-price">Our Price: Rs.{book.ourPrice}</span>

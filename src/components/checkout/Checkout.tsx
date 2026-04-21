@@ -12,6 +12,7 @@ import { placeOrder } from "../../actions/checkoutActions";
 import { clearCart, getCart } from "../../actions/cartActions";
 import Address from "./Address";
 import { useCart } from "../../context/CartContext";
+import toast from "../../utils/toast";
 
 const Checkout = ({ cart, setCartState, isOpen, handleClose }: { cart: CartState, setCartState: any, isOpen: boolean, handleClose: any }) => {
     const { clearCartItemCountContext } = useCart();
@@ -64,7 +65,7 @@ const Checkout = ({ cart, setCartState, isOpen, handleClose }: { cart: CartState
 
     const handlePlaceOrder = async () => {
         if (!validateForm()) {
-            window.alert('Please fill in the required fields to proceed');
+            toast.show('Please fill in the required fields to proceed');
             return;
         }
 
@@ -109,7 +110,7 @@ const Checkout = ({ cart, setCartState, isOpen, handleClose }: { cart: CartState
     return (
         <div className="checkout-modal">
             <div className="checkout-container">
-                <button className="icon close" onClick={closeModal}>x</button>
+                <button className="close-btn" onClick={closeModal}>&times;</button>
                 <div className="content">
                     {!isAddressOpen ? (
                         <div className="checkout-details">

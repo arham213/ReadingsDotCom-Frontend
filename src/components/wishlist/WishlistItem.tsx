@@ -8,6 +8,7 @@ import { WishlistItemInternalState } from "../../types/User";
 import { removeFromWishlist } from "../../actions/userActions";
 import { addToCart, addToCartV2 } from "../../actions/cartActions";
 import { useWishlist } from "../../context/WishlistContext";
+import toast from "../../utils/toast";
 import { useCart } from "../../context/CartContext";
 
 const WishlistItem = ({ wishlistItem, getWishlist, setWishlistState }: { wishlistItem: Book, getWishlist: any, setWishlistState: any }) => {
@@ -29,7 +30,7 @@ const WishlistItem = ({ wishlistItem, getWishlist, setWishlistState }: { wishlis
         const user = JSON.parse(localStorage.getItem("user") || "null");
 
         if (!user) {
-            window.alert("Failed to move item to cart")
+            toast.show("Failed to move item to cart")
         }
 
         let price;
