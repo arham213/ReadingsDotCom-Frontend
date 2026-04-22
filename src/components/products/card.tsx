@@ -134,7 +134,7 @@ const Card = ({ product }: ProductCardProps) => {
                 {user?.wishlistItems?.includes(product._id) ? <img src={rightArrow} alt="Wishlist Icon" className="add-to-wishlist" onClick={handleDeleteWishlistItem} /> : (
                     <img src={heartIcon} alt="Wishlist Icon" className="add-to-wishlist" onClick={handleAddToWishlist} />
                 )}
-                {(product.status === "In Stock" || product.inStock > 0) && (
+                {product.status === "In Stock" && (
                     <img src={cartIcon} alt="Cart Icon" className="add-to-cart" onClick={handleAddToCart} />
                 )}
             </div>

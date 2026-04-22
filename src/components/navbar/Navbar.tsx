@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
           >
             <span className="navbar-link">{category.title}</span>
             {activeCategory?.code === category.code && (
-              <NavbarDropdown category={category} />
+              <NavbarDropdown category={category} closeDropdown={() => setActiveCategory(null)} />
             )}
           </li>
         ))}

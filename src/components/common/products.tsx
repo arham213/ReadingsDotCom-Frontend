@@ -22,14 +22,17 @@ interface CategoryState {
 interface ProductsProps {
     heading?: string,
     categoryName?: string;
+    categoryCode?: number;
     authorId?: string;
 }
 
-const Products = ({ heading, categoryName, authorId }: ProductsProps) => {
+const Products = ({ heading, categoryName, categoryCode, authorId }: ProductsProps) => {
     const prevRef = useRef<HTMLDivElement | null>(null);
     const nextRef = useRef<HTMLDivElement | null>(null);
-    const categoryCode = TOP_CATEGORIES.find(category => category.name === categoryName)?.code;
-    const viewAllUrl = categoryCode ? `/category/${categoryCode}` : `/author/${authorId}`;
+    
+    // Use the explicit categoryCode if provided, otherwise look up by name in TOP_CATEGORIES
+    const resolvedCategoryCode = categoryCode || TOP_CATEGORIES.find(category => category.name === categoryName)?.code;
+    const viewAllUrl = resolvedCategoryCode ? `/category/${resolvedCategoryCode}` : `/author/${authorId}`;
 
     const [state, setState] = useState<CategoryState>({
         books: [],
@@ -38,8 +41,8 @@ const Products = ({ heading, categoryName, authorId }: ProductsProps) => {
         success: ""
     })
     useEffect(() => {
-        if (categoryCode) {
-            getBooksByCategory(categoryCode, setState);
+        if (resolvedCategoryCode) {
+            getBooksByCategory(resolvedCategoryCode, setState);
         } else if (authorId) {
             getBooksByAuthor(authorId, setState);
         }

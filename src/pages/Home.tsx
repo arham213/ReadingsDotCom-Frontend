@@ -7,11 +7,11 @@ const Home = () => {
         <div>
             <HeroSection />
             <Products categoryName="New Releases" />
-            <Products categoryName="New at Readings" />
-            <Products categoryName="New in Our Publications" />
+            <Products categoryCode={401} heading="Latest Fiction" />
+            <Products categoryCode={501} heading="Non-Fiction New Arrivals" />
             <Products categoryName="Coming Soon (Pre-Order)" />
-            <Products categoryName="International Bestsellers" />
-            <Products categoryName="Bestsellers in Our Publications" />
+            <Products categoryCode={801} heading="New Urdu Releases" />
+            <Products categoryCode={1001} heading="Huge Discounts (50% Off)" />
         </div>
     )
 }

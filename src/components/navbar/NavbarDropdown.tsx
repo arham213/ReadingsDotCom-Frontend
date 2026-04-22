@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 interface NavbarDropdownProps {
   category: MainCategory;
+  closeDropdown: () => void;
 }
 
-const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ category }) => {
+const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ category, closeDropdown }) => {
   const navigate = useNavigate();
 
   // if no groups and no topRow, nothing to show
@@ -26,6 +27,7 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ category }) => {
               data-code={item.code}
               onClick={(e) => {
                 e.preventDefault();
+                closeDropdown();
                 navigate(`/category/${item.code}`);
               }}
             >
@@ -46,7 +48,10 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ category }) => {
                   key={item.code} 
                   className="dropdown-item" 
                   data-code={item.code}
-                  onClick={() => navigate(`/category/${item.code}`)}
+                  onClick={() => {
+                      closeDropdown();
+                      navigate(`/category/${item.code}`);
+                  }}
                 >
                   {item.name}
                 </li>
