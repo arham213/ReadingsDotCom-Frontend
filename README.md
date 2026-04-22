@@ -7,7 +7,7 @@
 
 Frontend for a full-stack MERN e-commerce platform specializing in books. Handles authentication flows, product browsing, cart and wishlist state management, and end-to-end order placement via a REST API backend.
 
-**Live:** [coming-soon.vercel.app](#) &nbsp;|&nbsp; **Backend:** [ReadingsDotCom-Backend](https://github.com/arham213/ReadingsDotCom-Backend)
+**Live:** [readings-dot-com-frontend.vercel.app](https://readings-dot-com-frontend.vercel.app/) &nbsp;|&nbsp; **Backend:** [ReadingsDotCom-Backend](https://github.com/arham213/ReadingsDotCom-Backend)
 
 ---
 
