@@ -55,7 +55,7 @@ npm install
 Create a `.env` file in the root directory and fill in your values:
 
 ```env
-BASE_URL=your_backend_url
+REACT_APP_API_URL=your_backend_url
 ```
 
 ```bash
