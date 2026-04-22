@@ -474,7 +474,7 @@ nav.navbar {
 }
 
 /* Popular Categories — narrow left column */
-.dropdown-group:first-child {
+.dropdown-group:first-child:not(:last-child) {
   flex-shrink: 0;
   min-width: 160px;
   max-width: 200px;
@@ -483,13 +483,29 @@ nav.navbar {
 }
 
 /* All Categories — multi-column grid on right */
-.dropdown-group:last-child {
+.dropdown-group:last-child:not(:first-child) {
   flex: 1;
 }
 
-.dropdown-group:last-child .dropdown-list {
+.dropdown-group:last-child:not(:first-child) .dropdown-list {
   columns: 5;
   column-gap: 2rem;
+}
+
+/* Single group styling (when there's only 1 group) */
+.dropdown-group:only-child {
+  flex: 1;
+}
+
+.dropdown-group:only-child .dropdown-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.dropdown-group:only-child .dropdown-item {
+  min-width: 150px;
 }
 
 .dropdown-group-title {
@@ -580,7 +596,7 @@ nav.navbar {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 199;
+  z-index: 399;
   backdrop-filter: blur(2px);
 }
 
@@ -594,7 +610,7 @@ nav.navbar {
   max-width: 360px;
   height: 100vh;
   background: var(--color-surface);
-  z-index: 200;
+  z-index: 400;
   flex-direction: column;
   overflow-y: auto;
   box-shadow: var(--shadow-xl);

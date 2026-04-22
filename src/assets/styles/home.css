@@ -122,3 +122,12 @@
 .product-slide .product-card {
   width: 100%;
 }
+
+/* ==============================
+   Responsive Queries
+   ============================== */
+@media screen and (min-width: 992px) {
+  .hero-section img {
+    max-height: 480px;
+  }
+}

@@ -22,8 +22,15 @@ const SearchBar = () => {
     }
 
     useEffect(() => {
-        performSearch()
-    }, [state.searchString])
+        if (state.searchString.trim() !== "") {
+            performSearch();
+        } else {
+            // Optional: clear results when search is empty
+            if (state.books.length > 0) {
+                setState((prev) => ({ ...prev, books: [] }));
+            }
+        }
+    }, [state.searchString]);
 
     useEffect(()=> {
         console.log('Search Results State:', state);

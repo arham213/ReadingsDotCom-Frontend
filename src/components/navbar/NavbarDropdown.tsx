@@ -1,12 +1,15 @@
 // src/components/Navbar/NavbarDropdown.tsx
 import React from "react";
 import { MainCategory } from "./navbarData";
+import { useNavigate } from "react-router-dom";
 
 interface NavbarDropdownProps {
   category: MainCategory;
 }
 
 const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ category }) => {
+  const navigate = useNavigate();
+
   // if no groups and no topRow, nothing to show
   if (!category.topRow && !category.groups) return null;
 
@@ -16,7 +19,16 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ category }) => {
       {category.topRow && (
         <div className="dropdown-toprow">
           {category.topRow.map((item) => (
-            <a key={item.code} href="#" className="toprow-link" data-code={item.code}>
+            <a 
+              key={item.code} 
+              href={`/category/${item.code}`} 
+              className="toprow-link" 
+              data-code={item.code}
+              onClick={(e) => {
+                e.preventDefault();
+                navigate(`/category/${item.code}`);
+              }}
+            >
               {item.name}
             </a>
           ))}
@@ -30,7 +42,12 @@ const NavbarDropdown: React.FC<NavbarDropdownProps> = ({ category }) => {
             <h4 className="dropdown-group-title">{group.title}</h4>
             <ul className="dropdown-list">
               {group.items.map((item) => (
-                <li key={item.code} className="dropdown-item" data-code={item.code}>
+                <li 
+                  key={item.code} 
+                  className="dropdown-item" 
+                  data-code={item.code}
+                  onClick={() => navigate(`/category/${item.code}`)}
+                >
                   {item.name}
                 </li>
               ))}

@@ -1,6 +1,7 @@
-import { use, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getBook } from "../actions/bookActions";
+import { addToCart } from "../actions/cartActions";
 import { Book } from "../types/Book";
 import { Category } from "../types/Category";
 import { Author } from "../types/Author";
@@ -10,16 +11,24 @@ import HeartIcon from "../assets/images/heart-icon.png";
 import "../assets/styles/product.css";
 import Products from "../components/common/products";
 import { ProductDetailSkeleton } from "../components/common/Skeleton";
+import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
+import toast from "../utils/toast";
 
 interface ProductPageState {
     book: Book | null,
     loading: boolean,
     error: string,
-    success: string
+    success: string,
+    cartItemCount?: Number | null
 }
 
 const Product = () => {
     const bookId = useLocation().pathname.split('/')[2];
+    const navigate = useNavigate();
+    const { user } = useAuth();
+    const { incrementCartItemCountContext } = useCart();
+    
     console.log('bookId:', bookId);
 
     const [state, setState] = useState<ProductPageState>({
@@ -38,6 +47,28 @@ const Product = () => {
     }, [state])
 
     const book = state.book;
+
+    const handleAddToCart = async () => {
+        if (!user) {
+            toast.show("Please login first to add book to the cart");
+            return;
+        }
+
+        if (!book) return;
+
+        let price = book.discount > 0 ? book.ourPriceAfterDiscount : book.ourPrice;
+
+        await addToCart(user?.cart?.cartId, book._id, 1, price, incrementCartItemCountContext, setState);
+    }
+
+    const handleBuyNow = async () => {
+        if (!user) {
+            toast.show("Please login first to add book to the cart");
+            return;
+        }
+        await handleAddToCart();
+        navigate('/cart');
+    }
 
     return (
         <>
@@ -121,8 +152,8 @@ const Product = () => {
                             <div className="action-buttons">
                                 {book.status === "In Stock" && (
                                     <>
-                                        <Button classNames="buy-now-button" text="Buy Now" />
-                                        <Button classNames="add-to-cart-button" text="Add To Cart"/>
+                                        <Button classNames="buy-now-button" text="Buy Now" onClick={handleBuyNow} />
+                                        <Button classNames="add-to-cart-button" text="Add To Cart" onClick={handleAddToCart} />
                                     </>
                                 )}
                                 <div className="add-to-wishlist">

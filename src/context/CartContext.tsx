@@ -12,9 +12,10 @@ export const CartProvider = ({ children }: { children: any }) => {
         setUser((prev: StoredUser) => ({
             ...prev,
             cart: {
+                ...prev.cart,
                 cartItemCount: prev.cart.cartItemCount + 1
             }
-        }))
+        }));
 
         const user = JSON.parse(localStorage.getItem('user') || "null");
         if (user) {
@@ -27,9 +28,10 @@ export const CartProvider = ({ children }: { children: any }) => {
         setUser((prev: StoredUser) => ({
             ...prev,
             cart: {
-                cartItemCount: itemCount + 1
+                ...prev.cart,
+                cartItemCount: itemCount
             }
-        }))
+        }));
 
         const user = JSON.parse(localStorage.getItem('user') || "null");
         if (user) {
@@ -42,13 +44,14 @@ export const CartProvider = ({ children }: { children: any }) => {
         setUser((prev: StoredUser) => ({
             ...prev,
             cart: {
-                cartItemCount: prev.cart.cartItemCount - 1
+                ...prev.cart,
+                cartItemCount: Math.max(0, prev.cart.cartItemCount - 1)
             }
-        }))
+        }));
 
         const user = JSON.parse(localStorage.getItem('user') || "null");
-        if (user) {
-            user.cart.cartItemCount += 1;
+        if (user && user.cart.cartItemCount > 0) {
+            user.cart.cartItemCount -= 1;
             localStorage.setItem('user', JSON.stringify(user));
         }
     }
@@ -57,9 +60,10 @@ export const CartProvider = ({ children }: { children: any }) => {
         setUser((prev: StoredUser) => ({
             ...prev,
             cart: {
+                ...prev.cart,
                 cartItemCount: 0
             }
-        }))
+        }));
 
         const user = JSON.parse(localStorage.getItem('user') || "null");
         if (user) {
